@@ -70,15 +70,15 @@ export default function Home() {
     }
   }
 
-  const messagesEndRef = useRef(null)
+  // const messagesEndRef = useRef(null)
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+  // const scrollToBottom = () => {
+  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  // }
 
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+  // useEffect(() => {
+  //   scrollToBottom()
+  // }, [messages])
 
   return (
     <Box
@@ -126,7 +126,7 @@ export default function Home() {
               </Box>
             </Box>
           ))}
-          <div ref={messagesEndRef} />
+          {/* <div ref={messagesEndRef} /> */}
         </Stack>
         <Stack direction={'row'} spacing={2}>
           <TextField
