@@ -1,7 +1,8 @@
 'use client'
 
 import { Box, Button, Stack, TextField } from '@mui/material'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -70,15 +71,15 @@ export default function Home() {
     }
   }
 
-  // const messagesEndRef = useRef(null)
+  const messagesEndRef = useRef(null)
 
-  // const scrollToBottom = () => {
-  //   messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  // }
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
-  // useEffect(() => {
-  //   scrollToBottom()
-  // }, [messages])
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
 
   return (
     <Box
@@ -122,11 +123,11 @@ export default function Home() {
                 borderRadius={16}
                 p={3}
               >
-                {message.content}
+                <ReactMarkdown>{message.content}</ReactMarkdown>  {/* Render the content with markdown support */}
               </Box>
             </Box>
           ))}
-          {/* <div ref={messagesEndRef} /> */}
+          <div ref={messagesEndRef} />
         </Stack>
         <Stack direction={'row'} spacing={2}>
           <TextField
@@ -134,7 +135,7 @@ export default function Home() {
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             disabled={isLoading}
           />
           <Button
